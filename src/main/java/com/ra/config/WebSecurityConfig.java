@@ -49,7 +49,8 @@ public class WebSecurityConfig {
 				  .authenticationProvider(authenticationProvider())
 				  .authorizeHttpRequests((auth) ->
 							 auth.requestMatchers("/auth/**").permitAll()
-										.anyRequest().authenticated())
+									 .requestMatchers("/user/**").hasAuthority("ROLE_ADMIN")
+									 .anyRequest().authenticated())
 				  .exceptionHandling((auth) ->
 							 auth.authenticationEntryPoint(jwtEntryPoint)
 										.accessDeniedHandler(customAccessDeniedHandler))

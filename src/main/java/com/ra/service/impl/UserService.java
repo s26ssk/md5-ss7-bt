@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -90,5 +91,10 @@ public class UserService implements IUserService {
 				  .username(userPrincipal.getUsername())
 				  .roles(userPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet()))
 				  .build();
+	}
+
+	@Override
+	public List<Users> getAllUser() {
+		return userRepository.findAll();
 	}
 }

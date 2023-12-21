@@ -25,7 +25,7 @@ public class Users {
     @JsonIgnore
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_detail",
             joinColumns = @JoinColumn(name = "user_id"),
